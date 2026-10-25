@@ -141,7 +141,7 @@
     "s6.d": "Chat assistants inside your systems, content and design generation, and faster development.",
     "exp.eyebrow": "Experience",
     "exp.title": "My career",
-    "exp.sub": "B.Sc. in Computer Science, Thamar University (2018/2019), grade 87.97%.",
+    "exp.sub": "B.Sc. in Computer Science, Thamar University (2018/2019).",
     "cv.ar": "CV (Arabic)",
     "cv.en": "CV (English)",
     "e1.when": "2025 – Present",
