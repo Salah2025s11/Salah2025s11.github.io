@@ -49,6 +49,14 @@
     "mock.d3": "94 days",
     "mock.r4": "Lease: Al-Sulay warehouse",
     "mock.d4": "21 days",
+    "gallery.zoom": "Click to enlarge",
+    "gallery.note": "Real screenshots from the live system, with company data hidden.",
+    "shot.dashboard": "Dashboard & urgent alerts",
+    "shot.fleet": "Fleet overview",
+    "shot.vehicles": "Vehicles & document tracking",
+    "shot.vehicle": "Full vehicle profile",
+    "shot.balady": "Balady licenses & expiry dates",
+    "shot.tasks": "Recurring tasks & renewals",
     "p2.name": "Workflow Master: purchase-request oversight",
     "p2.desc": "Every purchase request follows a clear approval cycle from creation to execution, with no lost paperwork.",
     "p2.f1": "Automated cycle: Oversight → Finance → Management → Execution",
@@ -204,6 +212,65 @@
     }, { threshold: 0.12 });
     targets.forEach((t) => { t.classList.add("reveal"); io.observe(t); });
   }
+
+  // Screenshot lightbox
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lbImg");
+  const lbCap = document.getElementById("lbCap");
+  let shots = [];
+  let shotIdx = 0;
+  let lastFocus = null;
+
+  const shotInfo = (btn) => {
+    const img = btn.querySelector("img");
+    const cap = btn.closest("figure")?.querySelector("figcaption") || btn.querySelector(".shot-cap");
+    return { src: img.dataset.full || img.src.replace("-thumb", ""), caption: cap ? cap.textContent : "" };
+  };
+
+  function showShot(i) {
+    shotIdx = (i + shots.length) % shots.length;
+    const { src, caption } = shotInfo(shots[shotIdx]);
+    lbImg.src = src;
+    lbImg.alt = caption;
+    lbCap.textContent = caption;
+  }
+
+  function openShot(btn) {
+    shots = [...document.querySelectorAll(`.js-shot[data-gallery="${btn.dataset.gallery}"]`)]
+      .sort((a, b) => a.dataset.index - b.dataset.index);
+    lastFocus = btn;
+    const ar = isRtl();
+    lb.querySelector(".lb-prev").setAttribute("aria-label", ar ? "التالي" : "Previous");
+    lb.querySelector(".lb-next").setAttribute("aria-label", ar ? "السابق" : "Next");
+    lb.querySelector(".lb-close").setAttribute("aria-label", ar ? "إغلاق" : "Close");
+    showShot(shots.indexOf(btn));
+    lb.hidden = false;
+    document.body.style.overflow = "hidden";
+    lb.querySelector(".lb-close").focus();
+  }
+
+  function closeShot() {
+    lb.hidden = true;
+    lbImg.src = "";
+    document.body.style.overflow = "";
+    lastFocus?.focus();
+  }
+
+  document.querySelectorAll(".js-shot").forEach((b) => b.addEventListener("click", () => openShot(b)));
+  lb.querySelector(".lb-close").addEventListener("click", closeShot);
+  // Left/right are physical; in Arabic (RTL) moving left means "next".
+  const isRtl = () => document.documentElement.dir === "rtl";
+  const goLeft = () => showShot(shotIdx + (isRtl() ? 1 : -1));
+  const goRight = () => showShot(shotIdx + (isRtl() ? -1 : 1));
+  lb.querySelector(".lb-prev").addEventListener("click", goLeft);
+  lb.querySelector(".lb-next").addEventListener("click", goRight);
+  lb.addEventListener("click", (e) => { if (e.target === lb) closeShot(); });
+  document.addEventListener("keydown", (e) => {
+    if (lb.hidden) return;
+    if (e.key === "Escape") closeShot();
+    if (e.key === "ArrowRight") goRight();
+    if (e.key === "ArrowLeft") goLeft();
+  });
 
   document.getElementById("year").textContent = new Date().getFullYear();
 })();

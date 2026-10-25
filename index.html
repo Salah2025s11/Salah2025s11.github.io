@@ -128,17 +128,47 @@
           </ul>
           <a class="btn btn-primary js-wa" href="#" data-msg="wa.p1" target="_blank" rel="noopener" data-i18n="cta.demo">اطلب عرضاً تجريبياً</a>
         </div>
-        <div class="mock" aria-hidden="true">
-          <div class="mock-bar"><i></i><i></i><i></i></div>
-          <div class="mock-body">
-            <div class="mock-title" data-i18n="mock.title">تنبيهات الانتهاء القادمة</div>
-            <div class="mock-row"><span data-i18n="mock.r1">رخصة بلدي: فرع العليا</span><b class="warn" data-i18n="mock.d1">12 يوم</b></div>
-            <div class="mock-row"><span data-i18n="mock.r2">استمارة مركبة: أ ب ج 1234</span><b class="danger" data-i18n="mock.d2">3 أيام</b></div>
-            <div class="mock-row"><span data-i18n="mock.r3">سجل تجاري: الشركة الأم</span><b class="ok" data-i18n="mock.d3">94 يوم</b></div>
-            <div class="mock-row"><span data-i18n="mock.r4">عقد إيجار: مستودع السلي</span><b class="warn" data-i18n="mock.d4">21 يوم</b></div>
-          </div>
-        </div>
+        <button class="shot-hero js-shot" type="button" data-gallery="twtheeq" data-index="0" aria-label="عرض الصورة بحجم كامل">
+          <span class="browser-bar"><i></i><i></i><i></i></span>
+          <img src="assets/shots/twtheeq/dashboard-thumb.jpg" alt="لوحة التحكم في نظام توثيق" loading="lazy" width="720" height="320">
+          <span class="zoom-hint" data-i18n="gallery.zoom">اضغط للتكبير</span>
+          <span class="sr-only shot-cap" data-i18n="shot.dashboard">لوحة التحكم والتنبيهات العاجلة</span>
+        </button>
       </article>
+
+      <div class="gallery" id="gallery-twtheeq" aria-label="لقطات من نظام توثيق">
+        <figure>
+          <button class="js-shot" type="button" data-gallery="twtheeq" data-index="1">
+            <img src="assets/shots/twtheeq/fleet-dashboard-thumb.jpg" data-full="assets/shots/twtheeq/fleet-dashboard.jpg" alt="" loading="lazy" width="720" height="332">
+          </button>
+          <figcaption data-i18n="shot.fleet">لوحة معلومات الأسطول</figcaption>
+        </figure>
+        <figure>
+          <button class="js-shot" type="button" data-gallery="twtheeq" data-index="2">
+            <img src="assets/shots/twtheeq/vehicles-thumb.jpg" data-full="assets/shots/twtheeq/vehicles.jpg" alt="" loading="lazy" width="720" height="331">
+          </button>
+          <figcaption data-i18n="shot.vehicles">إدارة السيارات ومتابعة وثائقها</figcaption>
+        </figure>
+        <figure>
+          <button class="js-shot" type="button" data-gallery="twtheeq" data-index="3">
+            <img src="assets/shots/twtheeq/vehicle-detail-thumb.jpg" data-full="assets/shots/twtheeq/vehicle-detail.jpg" alt="" loading="lazy" width="720" height="321">
+          </button>
+          <figcaption data-i18n="shot.vehicle">ملف المركبة الكامل</figcaption>
+        </figure>
+        <figure>
+          <button class="js-shot" type="button" data-gallery="twtheeq" data-index="4">
+            <img src="assets/shots/twtheeq/municipal-licenses-thumb.jpg" data-full="assets/shots/twtheeq/municipal-licenses.jpg" alt="" loading="lazy" width="720" height="327">
+          </button>
+          <figcaption data-i18n="shot.balady">رخص البلدية وتواريخ انتهائها</figcaption>
+        </figure>
+        <figure>
+          <button class="js-shot" type="button" data-gallery="twtheeq" data-index="5">
+            <img src="assets/shots/twtheeq/recurring-tasks-thumb.jpg" data-full="assets/shots/twtheeq/recurring-tasks.jpg" alt="" loading="lazy" width="720" height="323">
+          </button>
+          <figcaption data-i18n="shot.tasks">المهام الدورية والتجديدات</figcaption>
+        </figure>
+      </div>
+      <p class="gallery-note" data-i18n="gallery.note">لقطات حقيقية من النظام أثناء التشغيل، مع إخفاء بيانات الشركات.</p>
 
       <div class="products">
         <article class="product">
@@ -290,6 +320,16 @@
     <a href="#top" data-i18n="footer.top">العودة للأعلى ↑</a>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" hidden>
+  <button class="lb-close" type="button" aria-label="إغلاق">×</button>
+  <button class="lb-nav lb-prev" type="button" aria-label="السابق">‹</button>
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" type="button" aria-label="التالي">›</button>
+</div>
 
 <script src="assets/main.js"></script>
 </body>

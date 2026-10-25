@@ -228,6 +228,66 @@ p { margin: 0 0 1em; }
 .warn { background: rgba(255, 176, 32, .2); color: #ffd17a; }
 .danger { background: rgba(255, 86, 86, .2); color: #ff9c9c; }
 
+/* Screenshots */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.js-shot { font: inherit; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%; }
+.shot-hero {
+  position: relative; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: var(--shadow-lg); border: 1px solid var(--line);
+  transition: transform .2s;
+}
+.shot-hero:hover { transform: translateY(-3px); }
+.browser-bar { display: flex; gap: 6px; padding: 9px 12px; background: #eef2f7; border-bottom: 1px solid var(--line); }
+.browser-bar i { width: 10px; height: 10px; border-radius: 50%; background: #cfd8e3; }
+.browser-bar i:nth-child(1) { background: #ff6159; }
+.browser-bar i:nth-child(2) { background: #ffbd2e; }
+.browser-bar i:nth-child(3) { background: #28c941; }
+.shot-hero img { width: 100%; height: auto; }
+.zoom-hint {
+  position: absolute; inset-inline-end: 12px; bottom: 12px;
+  font-size: .8rem; font-weight: 600; color: #fff;
+  background: rgba(15, 36, 64, .75); padding: .3em .8em; border-radius: 99px;
+  opacity: 0; transition: opacity .2s;
+}
+.shot-hero:hover .zoom-hint, .shot-hero:focus-visible .zoom-hint { opacity: 1; }
+
+.gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: .8rem; }
+.gallery figure { margin: 0; }
+.gallery .js-shot {
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+  background: #fff; box-shadow: var(--shadow); aspect-ratio: 16 / 9;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.gallery .js-shot:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--blue); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; object-position: right top; }
+[dir="ltr"] .gallery img { object-position: right top; }
+.gallery figcaption { font-size: .85rem; color: var(--muted); text-align: center; margin-top: .5rem; line-height: 1.5; }
+.gallery-note { text-align: center; font-size: .82rem; color: var(--muted); margin: 0 0 2.2rem; }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  padding: 2rem; background: rgba(8, 18, 33, .92);
+  animation: lbIn .2s ease;
+}
+.lightbox[hidden] { display: none; }
+@keyframes lbIn { from { opacity: 0; } }
+.lightbox figure { margin: 0; max-width: min(1400px, 100%); text-align: center; }
+.lightbox img { max-width: 100%; max-height: 82vh; border-radius: 10px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); margin-inline: auto; }
+.lightbox figcaption { color: #d7e3f1; margin-top: .9rem; font-weight: 500; }
+.lb-close, .lb-nav {
+  font: inherit; color: #fff; background: rgba(255, 255, 255, .1);
+  border: 0; border-radius: 50%; cursor: pointer;
+  width: 48px; height: 48px; font-size: 1.8rem; line-height: 1;
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.lb-close:hover, .lb-nav:hover { background: rgba(255, 255, 255, .22); }
+.lb-close { position: absolute; top: 18px; inset-inline-end: 18px; }
+/* Physical layout: ‹ always on the left, › on the right; JS maps them to next/previous per language. */
+.lightbox { direction: ltr; }
+.lightbox figcaption { direction: rtl; }
+[dir="ltr"] .lightbox figcaption { direction: ltr; }
+
 /* Services */
 .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .service {
@@ -294,6 +354,7 @@ p { margin: 0 0 1em; }
 
 /* Responsive */
 @media (max-width: 980px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
   .products, .services { grid-template-columns: 1fr 1fr; }
   .featured { grid-template-columns: 1fr; }
   .about-grid, .exp-grid, .contact-card { grid-template-columns: 1fr; }
@@ -319,6 +380,9 @@ p { margin: 0 0 1em; }
   .fc-2 { inset-inline-end: -6%; }
 }
 @media (max-width: 620px) {
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .lightbox { padding: 1rem .5rem; gap: .3rem; }
+  .lb-nav { width: 38px; height: 38px; font-size: 1.4rem; }
   .products, .services { grid-template-columns: 1fr; }
   .featured .features { grid-template-columns: 1fr; }
   .brand-name { display: none; }
