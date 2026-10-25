@@ -252,6 +252,8 @@ p { margin: 0 0 1em; }
 .shot-hero:hover .zoom-hint, .shot-hero:focus-visible .zoom-hint { opacity: 1; }
 
 .gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: .8rem; }
+.gallery-4 { grid-template-columns: repeat(4, 1fr); }
+.tag-new { color: #0b6e7a; background: #e0f7fa; border-color: #b2ebf2; }
 .gallery figure { margin: 0; }
 .gallery .js-shot {
   border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
@@ -355,6 +357,7 @@ p { margin: 0 0 1em; }
 /* Responsive */
 @media (max-width: 980px) {
   .gallery { grid-template-columns: repeat(3, 1fr); }
+  .gallery-4 { grid-template-columns: repeat(2, 1fr); }
   .products, .services { grid-template-columns: 1fr 1fr; }
   .featured { grid-template-columns: 1fr; }
   .about-grid, .exp-grid, .contact-card { grid-template-columns: 1fr; }
