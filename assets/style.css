@@ -211,7 +211,7 @@ p { margin: 0 0 1em; }
   background: #fff3df; border: 1px solid #ffe1ad;
   padding: .2em .8em; border-radius: 99px;
 }
-.products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; }
 
 .mock { border-radius: 16px; background: var(--navy); box-shadow: var(--shadow-lg); overflow: hidden; }
 .mock-bar { display: flex; gap: 6px; padding: 12px 14px; background: rgba(255, 255, 255, .06); }
